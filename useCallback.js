@@ -53,3 +53,31 @@ function MyApp() {
 
 
 {/* 2: Passing memoized functions to as dependencies in other hooks. */}
+
+Example 2, without useCallback, Bad (But eslint-plugin-react-hook would give you warning to correct it):
+
+function MyApp() {
+  function foo() {
+    // do something with state or props data
+  }
+  useEffect(() => {
+    // do something with foo
+    // maybe fetch from API and then pass data to foo
+    foo()
+  }, [foo])
+  return <>...<>
+}
+{/* //Example 2, with useCallback, Good: */}
+
+function MyApp() {
+  const memoizedFoo = useCallback(function foo() {
+    // do something with state or props data
+  }, [ /* related state / props */])
+
+  useEffect(() => {
+    // do something with memoizedFoo
+    // maybe fetch from API and then pass data to memoizedFoo
+    memoizedFoo()
+  }, [memoizedFoo])
+  return <>...<>
+}
