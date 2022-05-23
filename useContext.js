@@ -140,6 +140,18 @@ function Main() {
     );
   }
 
+  function Profile() {
+    const userDetails = React.useContext(UserContext);
+    const setUserDetails = useContext(UserDispatchContext);
+  
+    return <h1> {userDetails.username} </h1>;
+  }
+  
+  // setUserDetails is a function as de-structured. When using it to update userDetail// s it expects an object with a username:
+  const [userDetails, setUserDetails] = useState({
+      username: "John Doe"
+  });
+
 
 
 
