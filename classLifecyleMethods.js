@@ -3,7 +3,7 @@ import { useEffect } from "react"
 Lifecycle methods of class
 1:Mounting
 constructor()
-componentWillMount()
+//componentWillMount() this one is deprecated now
 render()
 componentDidMount()
 useEffect(()=>{
@@ -15,8 +15,8 @@ useEffect(()=>{
 
 2:Updation
 shouldComponentUpdate()
-componentWillUpdate()
-render()
+//componentWillUpdate() this one is deprecated now
+render() 
 componentDidUpdate()
 useEffect(()=>{
     console.log("something");
