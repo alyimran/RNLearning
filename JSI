@@ -1,0 +1,27 @@
+The current React Native Bridge architecture between Native and JS works asynchronously and transfer data in JSON only.
+
+It produces next issues:
+
+Async calls
+
+Many threads and jumps across them: JS, Shadow, Main, Native...
+JS and Main threads do not directly communicate (slow UI rendering)
+JSON
+
+No data sharing between JS and Native threads
+Slow data transfer because of JSON serialisation (bottleneck)
+You can make the bridge to any native code Java/Konlin, ObjC/Swift, C++ etc. but you always have the problems from above.
+
+React Native JSI provides API to JS Runtime engine and allows to expose native functions and objects to JS directly - no bridge at all.
+
+It provides next advantages:
+
+Sync call from JS thread to Native and vice-versa
+Fast rendering using direct call to UI Main thread
+Data sharing between threads
+You have to use C++ only to work with JSI because JS Runtime has C++ API but it is possible to make C++ layer between JSI and your existed Java or Swift code.
+
+JSI is foundation for future new React Native architecture which includes: Fabric, TurboModules, CodeGen. Read more: https://github.com/react-native-community/discussions-and-proposals/issues/91
+
+
+JSI removes the need for a bridge between Native(Java/ObjC) and Javascript code. It also removes the requirement to serialize/deserialize all the information as JSON for communication between the two worlds. JSI is opening doors to new possibilities by bringing closes the javascript and the native worlds. Based on my understanding I am going to help you understand more about the JSI interface based on my knowledge.
